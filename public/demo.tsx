@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import Page from 'components/Page';
 import RichText from 'components/RichText';
 
-export default function ContactPage() {
+export default function Demo() {
   return (
-    <Page title="Privacy policy">
+    <Page title="Demo">
       <PrivacyPolicyContainer>
         <RichText>
           <p>
