@@ -1,17 +1,5 @@
 import React, { useState } from "react";
-import { initializeApp, auth } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-import "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDwGNx_trot1P21Aga78M0dR2tMZDtnjUs",
-  authDomain: "fbfb-92a4a.firebaseapp.com",
-  projectId: "fbfb-92a4a",
-  storageBucket: "fbfb-92a4a.appspot.com",
-  messagingSenderId: "1055006272972",
-  appId: "1:1055006272972:web:9f882da085e67d1e3a4169"
-};
-
-const app = initializeApp(firebaseConfig);
+import { initializeApp, auth } from "firebase/auth";
 
 const Header = () => {
   const [user, setUser] = useState(null);
@@ -69,4 +57,3 @@ const Header = () => {
 };
 
 export default Header;
-``
