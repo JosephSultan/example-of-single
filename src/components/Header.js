@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { initializeApp, auth } from "firebase/app";
+import { initializeApp, auth } from "firebase";
 
 const Header = () => {
   const [user, setUser] = useState(null);
