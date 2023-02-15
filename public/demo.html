@@ -9,15 +9,16 @@
     <script>
       // Your web app's Firebase configuration
       const firebaseConfig = {
-        apiKey: "AIzaSyA3KY6X6ce98lQd-XtRI5HaAFli1rC-95o",
+    apiKey: "AIzaSyA3KY6X6ce98lQd-XtRI5HaAFli1rC-95o",
     authDomain: "sla-dive.firebaseapp.com",
     projectId: "sla-dive",
     storageBucket: "sla-dive.appspot.com",
     messagingSenderId: "1008752397295",
     appId: "1:1008752397295:web:1fa46be1bc3461b32d841a"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
       firebase.analytics();
 
       function handleSignup() {
@@ -74,6 +75,5 @@
       <h2>Login with Google</h2>
       <button onclick="handleGoogleLogin()">Login with Google</button>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
   </body>
 </html>
