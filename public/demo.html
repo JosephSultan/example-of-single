@@ -8,30 +8,18 @@
       // Your web app's Firebase configuration
       const firebaseConfig = {
         apiKey: "AIzaSyA3KY6X6ce98lQd-XtRI5HaAFli1rC-95o",
-        authDomain: "sla-dive.firebaseapp.com",
-        projectId: "sla-dive",
-        storageBucket: "sla-dive.appspot.com",
-        messagingSenderId: "1008752397295",
-        appId: "1:1008752397295:web:1fa46be1bc3461b32d841a"
+    authDomain: "sla-dive.firebaseapp.com",
+    projectId: "sla-dive",
+    storageBucket: "sla-dive.appspot.com",
+    messagingSenderId: "1008752397295",
+    appId: "1:1008752397295:web:1fa46be1bc3461b32d841a"
       };
-
       // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      const auth = firebase.auth();
+      const app = firebase.initializeApp(firebaseConfig);
+      const auth = app.auth();
 
       // Google Sign-In
-      const googleButton = document.getElementById('google-signin');
-      const provider = new firebase.auth.GoogleAuthProvider();
-      googleButton.addEventListener('click', () => {
-        auth.signInWithPopup(provider)
-          .then((result) => {
-            const user = result.user;
-            console.log(`Hello ${user.displayName}`);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      });
+      const googleProvider = new firebase.auth.GoogleAuthProvider();
 
       function handleSignup() {
         const email = document.getElementById("signup-email").value;
@@ -42,7 +30,7 @@
           })
           .catch((error) => {
             alert(error.message);
-          }); 
+          });
       }
 
       function handleLogin() {
@@ -56,7 +44,17 @@
             alert(error.message);
           });
       }
-    </script>  
+
+      function handleGoogleLogin() {
+        auth.signInWithPopup(googleProvider)
+          .then((userCredential) => {
+            alert("You are now logged in with Google!");
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      }
+    </script>
   </head>
   <body style="display: flex; flex-direction: column; align-items: center;">
     <h1>Login/Signup Widget</h1>
@@ -71,7 +69,10 @@
       <input type="email" id="login-email" placeholder="Email" style="margin-bottom: 8px;">
       <input type="password" id="login-password" placeholder="Password" style="margin-bottom: 8px;">
       <button onclick="handleLogin()">Login</button>
-      <button id="google-signin">Google Sign-In</button>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+      <h2>Login with Google</h2>
+      <button onclick="handleGoogleLogin()">Sign in with Google</button>
     </div>
   </body>
 </html>
