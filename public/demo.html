@@ -4,7 +4,8 @@
     <title>Login/Signup Widget</title>
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"></script>
-    <script type="module">
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js"></script>
+    <script>
       // Your web app's Firebase configuration
       const firebaseConfig = {
         apiKey: "AIzaSyA3KY6X6ce98lQd-XtRI5HaAFli1rC-95o",
@@ -15,28 +16,25 @@
     appId: "1:1008752397295:web:1fa46be1bc3461b32d841a"
       };
       // Initialize Firebase
-      const app = firebase.initializeApp(firebaseConfig);
-      const auth = app.auth();
-
-      // Google Sign-In
-      const googleProvider = new firebase.auth.GoogleAuthProvider();
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
 
       function handleSignup() {
         const email = document.getElementById("signup-email").value;
         const password = document.getElementById("signup-password").value;
-        auth.createUserWithEmailAndPassword(email, password)
+        firebase.auth().createUserWithEmailAndPassword(email, password)
           .then((userCredential) => {
             alert("You have successfully signed up!");
           })
           .catch((error) => {
             alert(error.message);
-          });
+          }); 
       }
 
       function handleLogin() {
         const email = document.getElementById("login-email").value;
         const password = document.getElementById("login-password").value;
-        auth.signInWithEmailAndPassword(email, password)
+        firebase.auth().signInWithEmailAndPassword(email, password)
           .then((userCredential) => {
             alert("You are now logged in!");
           })
@@ -46,15 +44,16 @@
       }
 
       function handleGoogleLogin() {
-        auth.signInWithPopup(googleProvider)
-          .then((userCredential) => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider)
+          .then((result) => {
             alert("You are now logged in with Google!");
           })
           .catch((error) => {
             alert(error.message);
           });
       }
-    </script>
+    </script>  
   </head>
   <body style="display: flex; flex-direction: column; align-items: center;">
     <h1>Login/Signup Widget</h1>
@@ -72,7 +71,7 @@
     </div>
     <div style="display: flex; flex-direction: column;">
       <h2>Login with Google</h2>
-      <button onclick="handleGoogleLogin()">Sign in with Google</button>
+      <button onclick="handleGoogleLogin()">Login with Google</button>
     </div>
   </body>
 </html>
